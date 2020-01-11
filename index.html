@@ -17,31 +17,33 @@
 				loader = PIXI.loader,
 				resources = PIXI.loader.resources,
 				Sprite = PIXI.Sprite;
-				Rectangle = PIXI.Rectangle;
+        Rectangle = PIXI.Rectangle;
 
 		//Create a Pixi Applirocketion
 		let app = new Application({ 
-				width: 512, 
-				height: 512,                       
+				width: 1100, 
+        height: 650,   
+        backgroundColor: 0x336633,                   
 				antialias: true, 
 				transparent: false, 
 				resolution: 1
 			}
-		);
+    );
+    
+    // other variables
 
 		//Add the canvas that Pixi automatically created for you to the HTML document
 		document.body.appendChild(app.view);
 
 		//load an image and run the `setup` function when it's done
 		loader
-      .add("avatar2.jpg")
-      .add("tileset.png")
+      .add("maptest1.jpg")
       .add("TilesetPeople.png")
       .add("TilesetRuins.png")
       .add("TilesetTrees.png")
 			.load(setup);
 
-		let state, message, player, forge;
+		let state, message, player, forge, forge2, box;
 		
 		//This `setup` function will run when the image has loaded
 		function setup() {
@@ -50,8 +52,9 @@
 			message = new PIXI.Text("Hello Pixi!");
 			app.stage.addChild(message);
 			message.position.set(20, 460);
-			message.style = {fill: "white", font: "16px PetMe64"};			   
+			message.style = {fill: "white", font: "14px PetMe64"};			   
   
+      // load all sprites
       getSprites();
 
 			//Set the game state
@@ -73,19 +76,12 @@
 			player.x += player.vx;
 			player.y += player.vy
       
-      // make player come back around
-			if (player.x > 512)			
-        player.x = 0;
-      if (player.y > 512)  
-        player.y = 0;
-      if (player.x < 0)			
-        player.x = 512;
-      if (player.y < 0)  
-        player.y = 512;		
-				
+      // player can use arrow keys to move
+      freewalk();	
+
 			//check for a collision between the player and the box
 			if (hitTestRectangle(player, forge)) {
-				message.text = "Touching";
+				//message.text = "Touching";
       } else {
 				message.text = "";
 			}					
@@ -98,5 +94,7 @@
   <script type="text/javascript" src="collision.js"></script>
   <!-- Javascript for loading sprites -->
   <script type="text/javascript" src="sprites.js"></script>
+  <!-- Javascript for moving player -->
+  <script type="text/javascript" src="walk.js"></script>
 </body>
 </html>
