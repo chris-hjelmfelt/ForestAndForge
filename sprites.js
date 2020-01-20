@@ -1,5 +1,4 @@
 // Load Sprites
-
 function getSprites() {
   //Use tilesets to get all sprites			
   //Create the `tileset` sprite from the texture and
@@ -20,7 +19,7 @@ function getSprites() {
    // Get box sprite from ruins tileset
   let ruins = new PIXI.Texture(loader.resources["TilesetRuins.png"].texture﻿, new PIXI.Rectangle(240, 100, 44, 45));
   box = new Sprite(ruins);  
-  
+  box.name = "box1";
   box.x = 250;
   box.y = 100;	
   // Opt-in to interactivity
@@ -32,7 +31,9 @@ function getSprites() {
   // Get building sprite from ruins tileset
   let ruins2 = new PIXI.Texture(loader.resources["TilesetRuins.png"].texture﻿, new PIXI.Rectangle(480, 480, 100, 96));
   forge = new Sprite(ruins2);
+  forge.name = "forge1";
   forge2 = new Sprite(ruins2);
+  forge2.name = "forge2";
   //Position the building sprite and add to stage      
   forge.x = 140;
   forge.y = 400;	

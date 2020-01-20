@@ -1,9 +1,13 @@
 // KEYBOARD FOR MOVEMENT
 //Capture the keyboard arrow keys
-let left = keyboard(37),
-    up = keyboard(38),
-    right = keyboard(39),
-    down = keyboard(40);
+let left = keyboardHelper(37),
+    up = keyboardHelper(38),
+    right = keyboardHelper(39),
+    down = keyboardHelper(40),
+    wKey = keyboardHelper(87), // W
+    dKey = keyboardHelper(68), // D
+    sKey = keyboardHelper(83), // S
+    aKey = keyboardHelper(65); // A
 
 //Left arrow key `press` method
 left.press = () => {
@@ -11,7 +15,6 @@ left.press = () => {
   player.vx = -5;
   player.vy = 0;
 };
-
 //Left arrow key `release` method
 left.release = () => {
   //If the left arrow has been released, and the right arrow isn't down,
@@ -21,7 +24,8 @@ left.release = () => {
     player.vx = 0;
   }
 };
-//Up
+
+// Up
 up.press = () => {
   player.vy = -5;
   player.vx = 0;
@@ -31,7 +35,8 @@ up.release = () => {
     player.vy = 0;
   }
 };
-//Right
+
+// Right
 right.press = () => {
   player.vx = 5;
   player.vy = 0;
@@ -41,7 +46,8 @@ right.release = () => {
     player.vx = 0;
   }
 };
-//Down
+
+// Down
 down.press = () => {
   player.vy = 5;
   player.vx = 0;
@@ -52,9 +58,50 @@ down.release = () => {
   }
 };
 
+// WASD Keys
+wKey.press = () => {
+  player.vy = -5;
+  player.vx = 0;
+};
+wKey.release = () => {
+  if (!down.isDown && player.vx === 0) {
+    player.vy = 0;
+  }
+};
+
+dKey.press = () => {
+  player.vx = 5;
+  player.vy = 0;
+};
+dKey.release = () => {
+  if (!left.isDown && player.vy === 0) {
+    player.vx = 0;
+  }
+};
+
+sKey.press = () => {
+  player.vy = 5;
+  player.vx = 0;
+};
+sKey.release = () => {
+  if (!up.isDown && player.vx === 0) {
+    player.vy = 0;
+  }
+};
+
+aKey.press = () => {  
+  player.vx = -5;
+  player.vy = 0;
+}; 
+aKey.release = () => {   
+  if (!right.isDown && player.vy === 0) {
+    player.vx = 0;
+  }
+};
+
 
 //The `keyboard` helper function
-function keyboard(keyCode) {
+function keyboardHelper(keyCode) {
   var key = {};
   key.code = keyCode;
   key.isDown = false;

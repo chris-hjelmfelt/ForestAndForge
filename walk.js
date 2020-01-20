@@ -1,17 +1,17 @@
 var arrived = true;
 var walking = false;
 var pace;
+
 function onClick() {
-  console.log(walking);
   if (walking == true){
     clearInterval(pace);
   }
   walking = true;
   pace = setInterval(clickwalk, 100, this);
+  openMenu(this);
 }
 
 function clickwalk(t) {  
-  console.log("walking");
   arrived = true;
   if (player.x < t.x - 5){
     player.x += 10;
@@ -44,14 +44,4 @@ function freewalk() {
     player.x = 0;
   if (player.y < 0)  
     player.y = 0;	
-    
-  // // make player come back around
-  // if (player.x > 512)			
-  //   player.x = 0;
-  // if (player.y > 512)  
-  //   player.y = 0;
-  // if (player.x < 0)			
-  //   player.x = 512;
-  // if (player.y < 0)  
-  //   player.y = 512;
 }

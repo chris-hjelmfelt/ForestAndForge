@@ -41,21 +41,23 @@
       .add("TilesetPeople.png")
       .add("TilesetRuins.png")
       .add("TilesetTrees.png")
+      .add("menu.jpg")
 			.load(setup);
 
 		let state, message, player, forge, forge2, box;
 		
 		//This `setup` function will run when the image has loaded
-		function setup() {
-		
-			// A place to display messages
-			message = new PIXI.Text("Hello Pixi!");
-			app.stage.addChild(message);
-			message.position.set(20, 460);
-			message.style = {fill: "white", font: "14px PetMe64"};			   
+		function setup() {						   
   
       // load all sprites
       getSprites();
+      addMenus();  
+
+      // A place to display messages
+			message = new PIXI.Text("");
+			app.stage.addChild(message);
+			message.position.set(750, 460);
+      message.style = {fill: "Black", font: "20px PetMe64"};      
 
 			//Set the game state
 			state = play;
@@ -83,18 +85,21 @@
 			if (hitTestRectangle(player, forge)) {
 				//message.text = "Touching";
       } else {
-				message.text = "";
+				//message.text = "";
 			}					
-    }		
+    }	    
   </script>
 
   <!-- Javascript for keyboard input -->
   <script type="text/javascript" src="keyboard.js"></script>
   <!-- Javascript for collision detection -->
   <script type="text/javascript" src="collision.js"></script>
+  <!-- Javascript for displaying menus -->
+  <script type="text/javascript" src="menus.js"></script>
   <!-- Javascript for loading sprites -->
   <script type="text/javascript" src="sprites.js"></script>
   <!-- Javascript for moving player -->
   <script type="text/javascript" src="walk.js"></script>
+  
 </body>
 </html>
