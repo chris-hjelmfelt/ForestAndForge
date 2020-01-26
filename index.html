@@ -10,8 +10,9 @@
     let type = "WebGL"
     if(!PIXI.utils.isWebGLSupported()){
       type = "canvas"
-    }
-		
+    }   
+    
+
 		//Aliases
 		let Application = PIXI.Application,
 				loader = PIXI.loader,
@@ -30,12 +31,10 @@
 			}
     );
     
-    // other variables
-
-		//Add the canvas that Pixi automatically created for you to the HTML document
+   	// Add the canvas that Pixi automatically created for you to the HTML document
 		document.body.appendChild(app.view);
 
-		//load an image and run the `setup` function when it's done
+		// Load an image and run the `setup` function when it's done
 		loader
       .add("maptest1.jpg")
       .add("TilesetPeople.png")
@@ -44,20 +43,26 @@
       .add("menu.jpg")
 			.load(setup);
 
-		let state, message, player, forge, forge2, box;
-		
-		//This `setup` function will run when the image has loaded
-		function setup() {						   
-  
-      // load all sprites
-      getSprites();
+		let state, message, player, forge, forge2, box, worker1, worker2;
+    
+    // This `setup` function will run after images have loaded
+		function setup() {	
+        
+      // Load all sprites
+      addSprites();
+      workerSpriteSetup();
       addMenus();  
-
+      
       // A place to display messages
-			message = new PIXI.Text("");
+			message = new PIXI.Text("Stone: 0");
 			app.stage.addChild(message);
-			message.position.set(750, 460);
-      message.style = {fill: "Black", font: "20px PetMe64"};      
+			message.position.set(750, 605);
+      message.style = {fill: "Black", font: "16px PetMe64"};  
+      message2 = new PIXI.Text("");
+			app.stage.addChild(message2);
+			message2.position.set(750, 625);
+      message2.style = {fill: "Black", font: "16px PetMe64"};       
+      boxMenu.visible = true;
 
 			//Set the game state
 			state = play;
@@ -86,8 +91,10 @@
 				//message.text = "Touching";
       } else {
 				//message.text = "";
-			}					
-    }	    
+      }			
+      // Move workers   
+      WorkerWalk(workerInfo[1].worker, forge2, 1)		
+    }	     
   </script>
 
   <!-- Javascript for keyboard input -->
@@ -98,6 +105,8 @@
   <script type="text/javascript" src="menus.js"></script>
   <!-- Javascript for loading sprites -->
   <script type="text/javascript" src="sprites.js"></script>
+  <!-- Javascript for loading worker sprites -->
+  <script type="text/javascript" src="workers.js"></script>
   <!-- Javascript for moving player -->
   <script type="text/javascript" src="walk.js"></script>
   

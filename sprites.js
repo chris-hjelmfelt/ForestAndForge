@@ -1,5 +1,5 @@
 // Load Sprites
-function getSprites() {
+function addSprites() {
   //Use tilesets to get all sprites			
   //Create the `tileset` sprite from the texture and
   //Create a rectangle object that defines the position and
@@ -35,16 +35,16 @@ function getSprites() {
   forge2 = new Sprite(ruins2);
   forge2.name = "forge2";
   //Position the building sprite and add to stage      
-  forge.x = 140;
-  forge.y = 400;	
+  forge.x = 100;
+  forge.y = 430;	
   // Opt-in to interactivity
   forge.interactive = true;
   forge.buttonMode = true; // Shows hand cursor
   forge.on('pointerdown', onClick); // Pointers normalize touch and mouse
   app.stage.addChild(forge);
   
-  forge2.x = 730;
-  forge2.y = 250;
+  forge2.x = 700;
+  forge2.y = 260;
   // Opt-in to interactivity
   forge2.interactive = true;
   forge2.buttonMode = true; // Shows hand cursor
@@ -59,12 +59,10 @@ function getSprites() {
   stone.y = 220;	
   app.stage.addChild(stone);
 
-  // Get player
+  // Get Player
   let players = new PIXI.Texture(loader.resources["TilesetPeople.png"].texture﻿, new PIXI.Rectangle(470, 26, 50, 54));
-
   //Create the player sprite from the texture
   player = new Sprite(players);			
-
   //Position the player sprite on the canvas
   player.x = 0;
   player.y = 10;			
@@ -74,7 +72,7 @@ function getSprites() {
   //Add the player to the stage
   app.stage.addChild(player);
 
-  // Get Tree
+   // Get Tree
   let trees = new PIXI.Texture(loader.resources["TilesetTrees.png"].texture﻿, new PIXI.Rectangle(386, 0, 140, 143));
   tree = new Sprite(trees);
   tree2 = new Sprite(trees);
